@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- scan 当此属性设置为true时，配置文件如果发生改变，将会被重新加载， 默认值为true。 -->
+<!-- scanPeriod 设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。 当scan为true时，此属性生效。 默认的时间间隔为1分钟。 -->
+<!-- debug 当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。 默认值为false。 -->
+<configuration scan="true" scanPeriod="60" debug="true" xmlns="http://logback.com/logback.xsd">
+	<contextName>${tomcatName:-feilongtomcat}${catalina.home:-app1}</contextName>
+
+	<property name="projectName" value="esprit-store-mobile"></property>
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>DEBUG</level>
+		</filter>
+
+		<!-- 注意 logback 的括号需要转义 MMdd -->
+		<encoder charset="UTF-8" class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{HH:mm:ss} %-5level \(%F:%L\) %method\(\) - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- **************************nebula************************** -->
+	<logger name="com.baozun.nebula.web.filter.UrlDispatcherFilter" level="info" />
+<!-- 	<logger name="com.baozun.nebula.tag.ItemBreadCrumbTag" level="info" /> -->
+
+	<!-- **************************feilong****************************************** -->
+	<logger name="com.feilong.core.lang.ClassLoaderUtil" level="info" />
+	<logger name="com.feilong.core.util.comparator.PropertyComparator" level="info" />
+<!-- 	<logger name="com.feilong.taglib.display.breadcrumb.BreadCrumbUtil" level="info" /> -->
+
+	<!-- **************************springframework****************************************** -->
+	<logger name="org.springframework" level="DEBUG" />
+
+	<!-- Creating implicit proxy for bean 'memberDao' with 0 common interceptors and 1 specific interceptors -->
+	<logger name="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator" level="info" />
+	<logger name="org.springframework.aop.framework.ProxyFactoryBean" level="info" />
+
+	<!-- Creating JDK dynamic proxy: target source is SingletonTargetSource for target object [loxia.aspect.SimpleModelClassSupport@1b24421] -->
+	<logger name="org.springframework.aop.framework.JdkDynamicAopProxy" level="info" />
+
+	<logger name="org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider" level="info" />
+
+	<!-- Autowiring by type from bean name 'ItemInfoManager' to bean named 'itemForSolrSalesCountCommandDao' -->
+	<logger name="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" level="info" />
+	<logger name="org.springframework.beans.factory.annotation.InjectionMetadata" level="info" />
+	<logger name="org.springframework.beans.factory.support.AbstractBeanFactory" level="info" />
+	<logger name="org.springframework.beans.factory.support.DefaultListableBeanFactory" level="info" />
+	<logger name="org.springframework.beans.factory.support.DefaultSingletonBeanRegistry" level="info" />
+	
+	<logger name="org.springframework.beans.factory.xml.BeanDefinitionParserDelegate" level="info" />
+	<logger name="org.springframework.beans.factory.xml.PluggableSchemaResolver" level="info" />
+	<logger name="org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader" level="info" />
+	<logger name="org.springframework.beans.factory.xml.DefaultDocumentLoader" level="info" />
+	<logger name="org.springframework.beans.factory.xml.DefaultNamespaceHandlerResolver" level="info" />
+
+	<logger name="org.springframework.jdbc.core.JdbcTemplate" level="info" />
+	<!-- read-only -->
+	<logger name="org.springframework.jdbc.datasource.DataSourceUtils" level="debug" />
+
+	<logger name="org.springframework.orm.hibernate3.support.OpenSessionInViewInterceptor" level="info" />
+	<logger name="org.springframework.orm.hibernate3.HibernateTransactionManager" level="info" />
+
+	<logger name="org.springframework.transaction.annotation.AnnotationTransactionAttributeSource" level="info" />
+	<!-- **************************hibernate****************************************** -->
+	<logger name="org.hibernate.cfg.Ejb3Column" level="info" />
+	<logger name="org.hibernate.cfg.AnnotationBinder" level="warn" />
+
+	<logger name="org.hibernate.impl.SessionImpl" level="info" />
+
+	<!-- Bind entity com.baozun.store.model.help.ContactUs on table T_MEM_CONTACTUS -->
+	<logger name="org.hibernate.cfg.annotations.EntityBinder" level="warn" />
+	<logger name="org.hibernate.cfg.annotations.SimpleValueBinder" level="info" />
+	<logger name="org.hibernate.cfg.annotations.PropertyBinder" level="info" />
+	<logger name="org.hibernate.id.factory.DefaultIdentifierGeneratorFactory" level="info" />
+	<logger name="org.hibernate.loader.entity.EntityLoader" level="info" />
+	<logger name="org.hibernate.loader.entity.CascadeEntityLoader" level="info" />
+	<logger name="org.hibernate.persister.entity.AbstractEntityPersister" level="info" />
+
+	<!-- 如果要看jdbc连接可以开启 -->
+	<logger name="org.hibernate.jdbc.ConnectionManager" level="info" />
+	<!-- 如果要看transaction 情况可以开启 -->
+	<logger name="org.hibernate.transaction.JDBCTransaction" level="info" />
+
+
+	<!-- **************************loxia****************************************** -->
+	<logger name="loxia" level="DEBUG" />
+	<logger name="loxia.dao.support.BaseRowMapper" level="info" />
+
+	<!-- initConfigFile() - Query Privilege.findAllEffectiveList is registed. -->
+	<logger name="loxia.dao.support.XmlDynamicNamedQueryProvider" level="info" />
+	<logger name="loxia.dao.ReadWriteDataSource" level="info" />
+	<logger name="loxia.aspect.QueryAspect" level="info" />
+	<logger name="loxia.aspect.ReadWriteDataSourceAspect" level="info" />
+	<logger name="loxia.service.VelocityTemplateService" level="info" />
+	<logger name="loxia.support.json" level="info" />
+	<logger name="loxia.support.cache.CacheAspect" level="info" />
+	<logger name="loxia.spring.GenericDaoConfigBeanDefinitionParser" level="info" />
+
+	<!-- ****************************apache***************************************** -->
+	<logger name="org.apache" level="DEBUG" />
+	<logger name="org.apache.commons.digester.Digester" level="warn" />
+	<logger name="org.apache.commons.beanutils" level="DEBUG" />
+	<logger name="org.apache.commons.beanutils.ConvertUtils" level="info" />
+	<logger name="org.apache.commons.beanutils.ConvertUtilsBean" level="warn" />
+	<logger name="org.apache.commons.beanutils.converters" level="warn" />
+	<logger name="org.apache.commons.beanutils.converters.AbstractConverter" level="warn" />
+
+	<logger name="org.apache.zookeeper.ClientCnxn" level="info" />
+	<logger name="org.apache.zookeeper.client.ZooKeeperSaslClient" level="info" />
+
+	<!-- ****************************else***************************************** -->
+	<logger name="httpclient.wire" level="warn" />
+	<logger name="net.rubyeye.xmemcached" level="warn" />
+
+	<logger name="com.mchange" level="info" />
+
+	<root level="debug">
+		<appender-ref ref="CONSOLE" />
+	</root>
+</configuration>

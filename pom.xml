@@ -3,64 +3,112 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   
-  <groupId>com.mdl.sample</groupId>
-  <artifactId>sample-parent</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <parent>
+		<groupId>com.mdl.sample</groupId>
+		<artifactId>sample-parent</artifactId>
+		<version>1.0</version>
+  </parent>
   
-  <packaging>pom</packaging>
+  <artifactId>sample-utilities</artifactId>
   
-  <name>testmaven</name>
-  <description>testmaven</description>
+  <name>sample-utilities</name>
+  <description>sample-utilities</description>
   
   <inceptionYear>2016</inceptionYear>
   
-  <properties>
-  	<version.sample>1.0-SNAPSHOT</version.sample>
-  	<version.junit>4.12</version.junit>
-  	<version.easymock>3.1</version.easymock>
-  	<version.velocity>1.7</version.velocity>
-	<version.velocity-tools>2.0</version.velocity-tools>
-  </properties>
   <dependencies>
-  <!--***************************** test************************** -->
-		<!-- junit -->
+  		<!-- commons-lang -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
+			<artifactId>commons-lang</artifactId>
+			<groupId>commons-lang</groupId>
 		</dependency>
 
+		<!-- commons-lang3 -->
 		<dependency>
-			<groupId>org.easymock</groupId>
-			<artifactId>easymock</artifactId>
-			<scope>test</scope>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+
+
+		<!-- commons-beanutils -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-collections</artifactId>
+					<groupId>commons-collections</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- commons-codec -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
+
+		<!-- commons-logging 仅仅为了统一下版本，不要调用这里的API -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+		</dependency>
+
+		<!-- commons-collections -->
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+		</dependency>
+
+		<!-- commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<!-- <optional>true</optional> -->
+		</dependency>
+
+		<!-- net.sf.json-lib -->
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>${version.json-lib}</version>
+			<classifier>jdk15</classifier>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-beanutils</artifactId>
+					<groupId>commons-beanutils</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-collections</artifactId>
+					<groupId>commons-collections</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-lang</artifactId>
+					<groupId>commons-lang</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- velocity -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>${version.velocity}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-tools</artifactId>
+			<version>${version.velocity-tools}</version>
 		</dependency>
   </dependencies>
-  
-  <dependencyManagement>
-  	<dependencies>
-  		<dependency>
-	  		<groupId>mysimplemaven</groupId>
-			<artifactId>sample-utilities</artifactId>
-			<version>${version.sample}</version>
-  		</dependency>
-  		
-  		<!-- junit -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${version.junit}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.easymock</groupId>
-			<artifactId>easymock</artifactId>
-			<version>${version.easymock}</version>
-			<scope>test</scope>
-		</dependency>
-  	</dependencies>
-  </dependencyManagement>
   
   
 </project>
